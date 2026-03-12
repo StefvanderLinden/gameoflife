@@ -12,8 +12,9 @@ public class GameBoard implements BlockField {
     }
 
     @Override
-    public void showBoard() {
+    public boolean[][] getBoard() {
 
-        System.out.println(Arrays.deepToString(this.board));
+        //System.out.println(Arrays.deepToString(this.board));
+        return this.board;
     }
 }
