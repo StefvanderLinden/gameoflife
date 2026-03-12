@@ -5,10 +5,13 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.BoxLayout;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class SwingDisplay implements Display {
-        private JPanel fullboardpanel;
-        private JButton[][] allButtons;
+    private JPanel fullboardpanel;
+    private JButton[][] allButtons;
+    private boolean paused;
 
     public SwingDisplay() {
         JFrame frame = new JFrame("Happy Coding");
@@ -19,6 +22,8 @@ public class SwingDisplay implements Display {
         fullboardpanel.setLayout(boxLayoutManager);
 
         allButtons = new JButton[20][20];
+
+        paused = false;
 
         for (int j = 0; j < 20; j++) {
             JPanel panelrow = new JPanel();
@@ -34,6 +39,20 @@ public class SwingDisplay implements Display {
             fullboardpanel.add(panelrow);
         }
 
+        JButton pauseButton = new JButton("PAUSE/UNPAUSE");
+        pauseButton.setActionCommand("pause");
+        pauseButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if(paused){
+                    System.out.println("UNPAUSE");
+                    paused = false;
+                }else{
+                    paused = true;
+                }
+
+            }
+        });
+        fullboardpanel.add(pauseButton);
         frame.add(fullboardpanel);
 
 
@@ -41,14 +60,18 @@ public class SwingDisplay implements Display {
         frame.setVisible(true);
     }
 
+    public boolean getPaused(){
+        return this.paused;
+    }
+
     @Override
     public void show(boolean[][] board) {
         for (int i = 0; i < 20; i++) {
             for (int j = 0; j < 20; j++) {
-                allButtons[i][j].setBackground((board[i][j] ? Color.BLACK: Color.WHITE));
+                allButtons[i][j].setBackground((board[i][j] ? Color.BLACK : Color.WHITE));
             }
         }
-
-
     }
+
 }
+

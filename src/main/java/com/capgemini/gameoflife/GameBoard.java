@@ -56,9 +56,6 @@ public class GameBoard implements BlockField {
                 }
             }
         }
-        if(!board[row][column]){
-            System.out.println("Neighbors" + row + " " + column + ": " + neighborCount);
-        }
         return neighborCount;
     }
     //these 2 copied from GameOfLifeCLU
