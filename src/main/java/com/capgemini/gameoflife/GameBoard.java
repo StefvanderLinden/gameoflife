@@ -34,6 +34,12 @@ public class GameBoard implements BlockField {
         for (int row = 0; row < board.length; row++) {
             for (int col = 0; col < board[row].length; col++) {
                 int neighborCount = countNeighbors(row, col);
+                //3 or 4 neightbors because neighborcount includes the cell itself
+                if(board[row][col] && (neighborCount < 3 || neighborCount > 4) ){
+                    board[row][col] = false;
+                }else if(!board[row][col] && neighborCount == 3){
+                    board[row][col] = true;
+                }
             }
         }
 
@@ -41,8 +47,8 @@ public class GameBoard implements BlockField {
 
     private int countNeighbors(int row, int column){
         int neighborCount = 0;
-        for (int r = Math.min(row - 1, 0); r < Math.max(20, row + 1); r++){
-            for (int c = Math.min(column - 1, 0); c < Math.max(20, column + 1); c++){
+        for (int r = Math.max(row - 1, 0); r < Math.min(20, row + 2); r++){
+            for (int c = Math.max(column - 1, 0); c < Math.min(20, column + 2); c++){
                 if (board[r][c]){
                     neighborCount += 1;
                 }

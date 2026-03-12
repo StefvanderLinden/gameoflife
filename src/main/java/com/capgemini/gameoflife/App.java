@@ -13,6 +13,8 @@ public class App {
         testBoard.addGlider();
         boolean[][] gameboard = testBoard.getBoard();
         System.out.println(Arrays.deepToString(gameboard));
+        testBoard.nextPhase();
+        System.out.println(Arrays.deepToString(gameboard));
 
 
     }
