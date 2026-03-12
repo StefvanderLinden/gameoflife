@@ -16,9 +16,9 @@ public class Main {
 //        gameBoard.fillSquares(positions);
 
         gameDisplay.show(gameBoard.getBoard());
-        for (int i = 0; i < 5; i++) {
+        while(true) {
             try {
-                TimeUnit.SECONDS.sleep(1);
+                TimeUnit.MILLISECONDS.sleep(250);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }

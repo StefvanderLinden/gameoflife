@@ -14,7 +14,6 @@ public class GameBoard implements BlockField {
     @Override
     public boolean[][] getBoard() {
 
-        //System.out.println(Arrays.deepToString(this.board));
         return this.board;
     }
 
@@ -57,7 +56,6 @@ public class GameBoard implements BlockField {
             }
         }
         if(!board[row][column]){
-            System.out.println("Neighbors" + row + " " + column + ": " + neighborCount);
         }
         return neighborCount;
     }
