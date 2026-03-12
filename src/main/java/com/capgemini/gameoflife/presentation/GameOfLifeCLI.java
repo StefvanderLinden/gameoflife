@@ -1,6 +1,6 @@
 package com.capgemini.gameoflife.presentation;
 
-public class GameOfLifeCLI {
+public class GameOfLifeCLI implements Display {
     boolean[][] myNumbers = {
             {false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false},
             {false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false},
