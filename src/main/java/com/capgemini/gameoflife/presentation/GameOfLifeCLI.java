@@ -1,32 +1,10 @@
 package com.capgemini.gameoflife.presentation;
 
 public class GameOfLifeCLI implements Display {
-    boolean[][] myNumbers = {
-            {false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false},
-            {false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false},
-            {false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false},
-            {false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false},
-            {false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false},
-            {false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false},
-            {false, false, false, false, false, false, true,  false, true,  true,  false, true,  true,  false, false, false, false, false, false, false},
-            {false, false, false, false, false, false, true,  true,  false, false, true,  false, true,  true,  false, false, false, false, false, false},
-            {false, false, false, false, false, false, false, true,  true,  true,  false, true,  true,  false, false, false, false, false, false, false},
-            {false, false, false, false, false, false, true,  false, false, true,  true,  true,  false, true,  false, false, false, false, false, false},
-            {false, false, false, false, false, false, true,  true,  true,  false, true,  false, true,  true,  false, false, false, false, false, false},
-            {false, false, false, false, false, false, false, false, true,  true,  true,  true,  false, false, false, false, false, false, false, false},
-            {false, false, false, false, false, false, true,  true,  false, false, true,  true,  true,  false, false, false, false, false, false, false},
-            {false, false, false, false, false, false, false, true,  true,  false, true,  true,  false, true,  false, false, false, false, false, false},
-            {false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false},
-            {false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false},
-            {false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false},
-            {false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false},
-            {false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false},
-            {false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false}
-    };
 
-    private String getDisplay() {
+    private String getDisplay(boolean[][] board) {
         var output = "";
-        for (boolean[] line: myNumbers) {
+        for (boolean[] line: board) {
             for (boolean value: line) {
                 if (value) {
                     output += "[X]";
@@ -39,7 +17,9 @@ public class GameOfLifeCLI implements Display {
         return output;
     }
 
-    public void show() {
-        System.out.println(getDisplay());
+    @Override
+    public void show(boolean[][] board) {
+        System.out.println(getDisplay(board));
     }
+
 }
