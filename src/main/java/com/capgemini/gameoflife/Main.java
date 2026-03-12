@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit;
 public class Main {
     public static void main(String[] args) {
         var gameBoard = new GameBoard();
-        var gameDisplay = new SwingDisplay();
+        var gameDisplay = new SwingDisplay(gameBoard);
 
         gameBoard.addGlider();
 //        int[][] positions = {{ 10, 10 },{ 10, 11 },{ 10, 12 }};
@@ -18,7 +18,7 @@ public class Main {
         gameDisplay.show(gameBoard.getBoard());
         while(true) {
             try {
-                TimeUnit.MILLISECONDS.sleep(250);
+                TimeUnit.MILLISECONDS.sleep(2500);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }

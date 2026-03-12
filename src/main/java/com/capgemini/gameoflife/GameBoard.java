@@ -17,6 +17,10 @@ public class GameBoard implements BlockField {
         return this.board;
     }
 
+    public void fillSquare(int row,int column) {
+        board[row][column] = true;
+    }
+
     private void fillSquares(int[][] positions){
         for (int[] row: positions)
             this.board[row[0]][row[1]] = true;
