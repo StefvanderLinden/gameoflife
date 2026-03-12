@@ -6,11 +6,14 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.BoxLayout;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class SwingDisplay implements Display {
         private JPanel fullboardpanel;
         private JButton[][] allButtons;
         private GameBoard gameBoard;
+        private boolean paused;
 
     public SwingDisplay(GameBoard gameBoard) {
         this.gameBoard = gameBoard;
@@ -22,6 +25,8 @@ public class SwingDisplay implements Display {
         fullboardpanel.setLayout(boxLayoutManager);
 
         allButtons = new JButton[20][20];
+
+        paused = false;
 
         for (int j = 0; j < 20; j++) {
             final int row = j;
@@ -42,11 +47,29 @@ public class SwingDisplay implements Display {
             fullboardpanel.add(panelrow);
         }
 
+        JButton pauseButton = new JButton("PAUSE/UNPAUSE");
+        pauseButton.setActionCommand("pause");
+        pauseButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if(paused){
+                    System.out.println("UNPAUSE");
+                    paused = false;
+                }else{
+                    paused = true;
+                }
+
+            }
+        });
+        fullboardpanel.add(pauseButton);
         frame.add(fullboardpanel);
 
 
         frame.setSize(900, 800);
         frame.setVisible(true);
+    }
+
+    public boolean getPaused(){
+        return this.paused;
     }
 
     @Override
@@ -66,4 +89,5 @@ public class SwingDisplay implements Display {
         gameBoard.fillSquare(row, column);
         show(gameBoard.getBoard());
     }
+
 }

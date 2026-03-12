@@ -15,15 +15,19 @@ public class Main {
 //        int[][] positions = {{ 10, 10 },{ 10, 11 },{ 10, 12 }};
 //        gameBoard.fillSquares(positions);
 
+        boolean paused = gameDisplay.getPaused();
         gameDisplay.show(gameBoard.getBoard());
-        while(true) {
-            try {
-                TimeUnit.MILLISECONDS.sleep(2500);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            gameBoard.nextPhase();
+        while (true) {
+            if(paused){
+                try {
+                    TimeUnit.MILLISECONDS.sleep(500);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                gameBoard.nextPhase();
+                }
             gameDisplay.show(gameBoard.getBoard());
+            paused = gameDisplay.getPaused();
         }
     }
 }
