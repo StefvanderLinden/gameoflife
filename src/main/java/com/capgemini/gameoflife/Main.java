@@ -9,21 +9,25 @@ import java.util.concurrent.TimeUnit;
 public class Main {
     public static void main(String[] args) {
         var gameBoard = new GameBoard();
-        var gameDisplay = new SwingDisplay();
+        var gameDisplay = new SwingDisplay(gameBoard);
 
         gameBoard.addGlider();
 //        int[][] positions = {{ 10, 10 },{ 10, 11 },{ 10, 12 }};
 //        gameBoard.fillSquares(positions);
 
+        boolean paused = gameDisplay.getPaused();
         gameDisplay.show(gameBoard.getBoard());
-        for (int i = 0; i < 5; i++) {
-            try {
-                TimeUnit.SECONDS.sleep(1);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            gameBoard.nextPhase();
+        while (true) {
+            if(paused){
+                try {
+                    TimeUnit.MILLISECONDS.sleep(500);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                gameBoard.nextPhase();
+                }
             gameDisplay.show(gameBoard.getBoard());
+            paused = gameDisplay.getPaused();
         }
     }
 }
