@@ -11,10 +11,9 @@ public class App {
         System.out.println("Hello World!");
         GameBoard testBoard = new GameBoard();
         testBoard.addGlider();
-        boolean[][] gameboard = testBoard.getBoard();
-        System.out.println(Arrays.deepToString(gameboard));
+        testBoard.show();
         testBoard.nextPhase();
-        System.out.println(Arrays.deepToString(gameboard));
+        testBoard.show();
 
 
     }
