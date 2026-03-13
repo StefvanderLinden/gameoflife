@@ -1,22 +1,21 @@
 package com.capgemini.gameoflife;
 
-import com.capgemini.gameoflife.presentation.GameOfLifeCLI;
+import com.capgemini.gameoflife.presentation.Display;
 import com.capgemini.gameoflife.presentation.SwingDisplay;
-import com.capgemini.gameoflife.testdata.TestData;
 
 import java.util.concurrent.TimeUnit;
 
 public class Main {
     public static void main(String[] args) {
-        var gameBoard = new GameBoard();
-        var gameDisplay = new SwingDisplay(gameBoard);
+        BlockField gameBoard = new GameBoard();
+        Display gameDisplay = new SwingDisplay(gameBoard);
 
-//        gameBoard.addGlider();
+//        gameBoard.addGlider();S
 
-        boolean paused = gameDisplay.getPaused();
+        boolean paused = gameDisplay.isPaused();
         gameDisplay.show(gameBoard.getBoard());
         while (true) {
-            if (gameDisplay.getPaused()) {
+            if (!gameDisplay.isPaused()) {
                 gameBoard.nextPhase();
             }
             gameDisplay.show(gameBoard.getBoard());

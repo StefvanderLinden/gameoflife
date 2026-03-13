@@ -26,7 +26,7 @@ public class GameBoard implements BlockField {
             this.board[row[0]][row[1]] = true;
     }
 
-    public void addGlider(){
+    private void addGlider(){
         int[][] positions = {  { 0, 1 }, { 1, 2 } , { 2, 0 }, { 2, 1 }, {2, 2} };
         fillSquares(positions);
     }
@@ -63,23 +63,5 @@ public class GameBoard implements BlockField {
         }
         return neighborCount;
     }
-    //these 2 copied from GameOfLifeCLU
-    private String getDisplay() {
-        var output = "";
-        for (boolean[] line: board) {
-            for (boolean value: line) {
-                if (value) {
-                    output += "[X]";
-                } else {
-                    output += "[ ]";
-                }
-            }
-            output += "\n";
-        }
-        return output;
-    }
 
-    public void show() {
-        System.out.println(getDisplay());
-    }
 }

@@ -1,6 +1,8 @@
 package com.capgemini.gameoflife.presentation;
 
+import com.capgemini.gameoflife.BlockField;
 import com.capgemini.gameoflife.GameBoard;
+
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -10,12 +12,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class SwingDisplay implements Display {
-        private JPanel fullboardpanel;
-        private JButton[][] allButtons;
-        private GameBoard gameBoard;
-        private boolean paused;
+    private JPanel fullboardpanel;
+    private JButton[][] allButtons;
+    private BlockField gameBoard;
+    private boolean paused;
 
-    public SwingDisplay(GameBoard gameBoard) {
+    public SwingDisplay(BlockField gameBoard) {
         this.gameBoard = gameBoard;
         JFrame frame = new JFrame("Happy Coding");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -26,7 +28,7 @@ public class SwingDisplay implements Display {
 
         allButtons = new JButton[20][20];
 
-        paused = false;
+        paused = true;
 
         for (int j = 0; j < 20; j++) {
             final int row = j;
@@ -51,10 +53,10 @@ public class SwingDisplay implements Display {
         pauseButton.setActionCommand("pause");
         pauseButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                if(paused){
+                if (paused) {
                     System.out.println("UNPAUSE");
                     paused = false;
-                }else{
+                } else {
                     paused = true;
                 }
 
@@ -66,9 +68,10 @@ public class SwingDisplay implements Display {
 
         frame.setSize(900, 800);
         frame.setVisible(true);
+        frame.setTitle("Game of Life");
     }
 
-    public boolean getPaused(){
+    public boolean isPaused() {
         return this.paused;
     }
 
@@ -76,7 +79,7 @@ public class SwingDisplay implements Display {
     public void show(boolean[][] board) {
         for (int i = 0; i < 20; i++) {
             for (int j = 0; j < 20; j++) {
-                allButtons[i][j].setBackground((board[i][j] ? Color.BLACK: Color.WHITE));
+                allButtons[i][j].setBackground((board[i][j] ? Color.BLACK : Color.WHITE));
             }
         }
 

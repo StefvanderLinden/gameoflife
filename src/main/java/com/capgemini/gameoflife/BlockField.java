@@ -1,7 +1,7 @@
 package com.capgemini.gameoflife;
 
 public interface BlockField {
-    default boolean[][] getBoard(){
-        return new boolean[20][20];
-    }
+    boolean[][] getBoard();
+    void fillSquare(int row, int column);
+    void nextPhase();
 }

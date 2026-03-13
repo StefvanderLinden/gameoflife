@@ -22,4 +22,8 @@ public class GameOfLifeCLI implements Display {
         System.out.println(getDisplay(board));
     }
 
+    @Override
+    public boolean isPaused() {
+        return false;
+    }
 }
