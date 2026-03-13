@@ -11,23 +11,20 @@ public class Main {
         var gameBoard = new GameBoard();
         var gameDisplay = new SwingDisplay(gameBoard);
 
-        gameBoard.addGlider();
-//        int[][] positions = {{ 10, 10 },{ 10, 11 },{ 10, 12 }};
-//        gameBoard.fillSquares(positions);
+//        gameBoard.addGlider();
 
         boolean paused = gameDisplay.getPaused();
         gameDisplay.show(gameBoard.getBoard());
         while (true) {
-            if(paused){
-                try {
-                    TimeUnit.MILLISECONDS.sleep(500);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
+            if (gameDisplay.getPaused()) {
                 gameBoard.nextPhase();
-                }
+            }
             gameDisplay.show(gameBoard.getBoard());
-            paused = gameDisplay.getPaused();
+            try {
+                TimeUnit.MILLISECONDS.sleep(500);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 }
